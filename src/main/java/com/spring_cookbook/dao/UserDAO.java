@@ -59,6 +59,8 @@ public class UserDAO {
 		String sql = "select u.id, u.first_name, u.age, p.id as p_id, p.title as p_title, p.date as p_date from users u left join post p on p.user_id = u.id order by u.id asc, p.date desc";
 		return jdbcTemplate.query(sql, new UserWithPosts());
 	}
+        
+        
 	private class UserWithPosts implements ResultSetExtractor<List<Users>> {
 
 		public List<Users> extractData(ResultSet rs) throws SQLException,
@@ -96,6 +98,18 @@ public class UserDAO {
 		
                         return new LinkedList<Users>(userMap.values());
 		}
+	}
+        
+        
+    public void update(Users user) {
+        String sql = "update users set first_name=?, age=? where id=?";
+        jdbcTemplate.update(sql, user.getFirstName(), user.getAge(),
+                user.getId());
+    }
+    
+    public void delete(Users user) {
+		String sql = "delete  from users where id=?";
+		jdbcTemplate.update(sql, user.getId());
 	}
 }
 

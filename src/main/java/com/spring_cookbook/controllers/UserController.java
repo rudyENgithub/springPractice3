@@ -48,5 +48,25 @@ public class UserController {
                        
 		}
 	}
+        
+        @RequestMapping("updateUser")
+	public void updateUser() {
+		
+                Users usuario1 =  new Users();
+                usuario1.setFirstName("Rudyto Sorto Ayala");
+                usuario1.setAge(28);
+                 usuario1.setId(11L);
+		userDAO.update(usuario1);
+	}
+        
+         @RequestMapping("deleteUser")
+	public void deleteUser() {
+		
+                Users usuario1 =  new Users();
+                 usuario1.setId(18L);
+		userDAO.delete(usuario1);
+	}
+         
+        
 
 }
