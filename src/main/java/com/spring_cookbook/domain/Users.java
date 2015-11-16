@@ -1,12 +1,29 @@
 package com.spring_cookbook.domain;
 
-import java.util.LinkedList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "users")
 public class Users {
+
+
+        
+          @Id
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
+  @SequenceGenerator(name = "auto_gen", sequenceName = "users_seq") 
 	private Long id;
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
 	private Integer age;
-	private LinkedList<Post> posts = new LinkedList<Post>();
 	
 	public Long getId() {
 		return id;
@@ -26,11 +43,6 @@ public class Users {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public LinkedList<Post> getPosts() {
-		return posts;
-	}
-	public void setPosts(LinkedList<Post> posts) {
-		this.posts = posts;
-	}
 
 }
+

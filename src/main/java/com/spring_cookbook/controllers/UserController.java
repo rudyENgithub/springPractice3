@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring_cookbook.dao.UserDAO;
 import com.spring_cookbook.domain.Users;
+import com.spring_cookbook.domain.UsersJdbc;
 import java.util.List;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -16,7 +18,7 @@ public class UserController {
 	@RequestMapping("user_list")
 	public void userList() {
 		System.out.println("UserController.userList()");
-                Users usuario1 =  new Users();
+                UsersJdbc usuario1 =  new UsersJdbc();
                 usuario1.setFirstName("Rudy Sorto");
                 usuario1.setAge(27);
 		userDAO.add(usuario1);
@@ -24,7 +26,7 @@ public class UserController {
         
         @RequestMapping("buscarPorId")
 	public void buscarPorId() {
-		Users user = userDAO.findById(11L);
+		UsersJdbc user = userDAO.findById(11L);
 		System.out.println(user.getFirstName());
 		System.out.println(user.getAge());
 	}
@@ -32,8 +34,8 @@ public class UserController {
         
         @RequestMapping("buscarTodos")
 	public void buscarTodos() {
-		List<Users> userList = userDAO.findAll();
-		for (Users user : userList) {
+		List<UsersJdbc> userList = userDAO.findAll();
+		for (UsersJdbc user : userList) {
 			System.out.println(user.getFirstName());
 			System.out.println(user.getAge());			
 		}
@@ -41,8 +43,8 @@ public class UserController {
         
         @RequestMapping("buscarTodosDepen")
 	public void buscarTodosDepen() {
-		List<Users> userList = userDAO.findAllDepen();
-		for (Users user : userList) {
+		List<UsersJdbc> userList = userDAO.findAllDepen();
+		for (UsersJdbc user : userList) {
 			System.out.println(user.getFirstName());
 			System.out.println(user.getAge());
                        
@@ -52,7 +54,7 @@ public class UserController {
         @RequestMapping("updateUser")
 	public void updateUser() {
 		
-                Users usuario1 =  new Users();
+                UsersJdbc usuario1 =  new UsersJdbc();
                 usuario1.setFirstName("Rudyto Sorto Ayala");
                 usuario1.setAge(28);
                  usuario1.setId(11L);
@@ -62,10 +64,25 @@ public class UserController {
          @RequestMapping("deleteUser")
 	public void deleteUser() {
 		
-                Users usuario1 =  new Users();
+                UsersJdbc usuario1 =  new UsersJdbc();
                  usuario1.setId(18L);
 		userDAO.delete(usuario1);
 	}
+         
+         
+         /*HIBERNATE*/
+         @RequestMapping("user_add_hb")
+	@ResponseBody
+	public String user_add_hb() {
+		Users user = new Users();
+		user.setFirstName("Merlin");
+		user.setAge(372);
+		
+		userDAO.addHb(user);
+		
+		return "User was successfully added";
+	}
+         /*HIBERNATE*/
          
         
 

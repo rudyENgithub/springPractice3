@@ -6,7 +6,7 @@ public class Post {
 	private long id;
 	private String title;
 	private Date date;
-	private Users user;
+	private UsersJdbc user;
 	
 	public long getId() {
 		return id;
@@ -26,10 +26,10 @@ public class Post {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Users getUser() {
+	public UsersJdbc getUser() {
 		return user;
 	}
-	public void setUser(Users user) {
+	public void setUser(UsersJdbc user) {
 		this.user = user;
 	}
 
