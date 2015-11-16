@@ -94,3 +94,4 @@ public class AppConfig {
 		return new HibernateTransactionManager(sessionFactory);
 	}
 }
+

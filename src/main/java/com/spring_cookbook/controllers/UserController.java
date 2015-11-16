@@ -8,6 +8,8 @@ import com.spring_cookbook.dao.UserDAO;
 import com.spring_cookbook.domain.Users;
 import com.spring_cookbook.domain.UsersJdbc;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -83,6 +85,22 @@ public class UserController {
 		return "User was successfully added";
 	}
          /*HIBERNATE*/
+         
+         @RequestMapping("/user_list5")
+	public void userList5() {
+	}
+
+	@RequestMapping("addUser5")
+	public String addUser5() {
+		return "addUser";
+	}
+
+	@RequestMapping(value="addUser5", method=RequestMethod.POST)
+	public String addUserSubmit(HttpServletRequest request) {
+		String firstName = request.getParameter("firstName");
+		System.out.println(firstName);
+		return "redirect:/user_list";
+	}
          
         
 
