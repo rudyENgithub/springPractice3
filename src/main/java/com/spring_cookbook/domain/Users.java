@@ -13,8 +13,6 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class Users {
 
-
-        
           @Id
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
   @SequenceGenerator(name = "auto_gen", sequenceName = "users_seq") 
