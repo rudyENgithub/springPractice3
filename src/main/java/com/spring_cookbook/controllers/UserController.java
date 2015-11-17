@@ -103,7 +103,7 @@ public class UserController {
 		System.out.println(firstName);
 		return "redirect:/user_list";
 	}
-        
+        /*carga el form con un objeto por defecto*/
         @ModelAttribute("defaultUser")
 	public Users defaultUser() {
 		Users user = new Users();
@@ -122,7 +122,15 @@ public void processForm(@RequestParam("firstName") String userName) {
             System.out.println(userName);
 		//return "redirect:/user_list";
         }*/
-         
         
+        /*GUARDANDO LOS DATOS DE UN FORM EN UN OBJETO AUTOMATICAMENTE*/
+         
+        @RequestMapping(value="addUserDefault", method=RequestMethod.POST)
+	//public String addUserDefault(@ModelAttribute Users user) {
+            public String addUserDefault(@ModelAttribute("defaultUser") Users user) {
+		System.out.println(user.getFirstName());
+		System.out.println(user.getAge());
+		return "redirect:/user_list";
+	}
 
 }
