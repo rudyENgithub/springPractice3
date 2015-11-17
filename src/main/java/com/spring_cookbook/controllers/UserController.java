@@ -9,7 +9,9 @@ import com.spring_cookbook.domain.Users;
 import com.spring_cookbook.domain.UsersJdbc;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -101,6 +103,25 @@ public class UserController {
 		System.out.println(firstName);
 		return "redirect:/user_list";
 	}
+        
+        @ModelAttribute("defaultUser")
+	public Users defaultUser() {
+		Users user = new Users();
+		user.setFirstName("Joe");
+		user.setAge(18);
+		return user;
+	}
+        
+        @RequestMapping("addUserDefault")
+	public String addUserDefault() {
+		return "addUserDefault";
+	}
+        /*
+          @RequestMapping("processForm")
+public void processForm(@RequestParam("firstName") String userName) {
+            System.out.println(userName);
+		//return "redirect:/user_list";
+        }*/
          
         
 
