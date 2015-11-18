@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring_cookbook.dao.UserDAO;
+import com.spring_cookbook.domain.User;
 import com.spring_cookbook.domain.Users;
 import com.spring_cookbook.domain.UsersJdbc;
 import java.util.List;
@@ -104,13 +105,15 @@ public class UserController {
 		return "redirect:/user_list";
 	}
         /*carga el form con un objeto por defecto*/
-        @ModelAttribute("defaultUser")
+     /*   @ModelAttribute("defaultUser")
 	public Users defaultUser() {
 		Users user = new Users();
 		user.setFirstName("Joe");
 		user.setAge(18);
 		return user;
-	}
+	}*/
+        
+      
         
         @RequestMapping("addUserDefault")
 	public String addUserDefault() {
@@ -125,11 +128,32 @@ public void processForm(@RequestParam("firstName") String userName) {
         
         /*GUARDANDO LOS DATOS DE UN FORM EN UN OBJETO AUTOMATICAMENTE*/
          
-        @RequestMapping(value="addUserDefault", method=RequestMethod.POST)
+     /*   @RequestMapping(value="addUserDefault", method=RequestMethod.POST)
 	//public String addUserDefault(@ModelAttribute Users user) {
             public String addUserDefault(@ModelAttribute("defaultUser") Users user) {
 		System.out.println(user.getFirstName());
 		System.out.println(user.getAge());
+		return "redirect:/user_list";
+	}*/
+        
+        /* elementos basico del formulario */ 
+        
+          @ModelAttribute("defaultUser")
+	public User defaultUser() {
+		User user = new User();
+		user.setFirstName1("default1");
+		user.setFirstName2("default2");
+		user.setFirstName3("default3");	// this won't actually work (not possible to set a default value for a hidden field)
+		user.setFirstName4("default4");
+		return user;
+	}
+          
+          @RequestMapping(value="addUserDefault", method=RequestMethod.POST)
+	public String addUserDefault(@ModelAttribute User user) {
+		System.out.println(user.getFirstName1());
+		System.out.println(user.getFirstName2());
+		System.out.println(user.getFirstName3());
+		System.out.println(user.getFirstName4());
 		return "redirect:/user_list";
 	}
 
